@@ -1,7 +1,21 @@
+using Almacen.Application;
+using Almacen.Infrastruture;
+using Almacen.Persistence;
+using Almacen.Web;
+using Serilog;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddPersistence(builder.Configuration);
+builder.Services.AddApplication(builder.Configuration);
+builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddPresentation(builder.Configuration);
+
+
+//builder.Host.UseSerilog((context, configuration)
+//    => configuration.ReadFrom.Configuration(context.Configuration));
 
 var app = builder.Build();
 
@@ -12,6 +26,7 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+//app.UseSerilogRequestLogging();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
