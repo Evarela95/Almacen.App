@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Almacen.Domain.DTOs
+namespace Almacen.Domain.DTOs.Producto_SucursalDTO
 {
     public class Producto_SucursalDTO
     {

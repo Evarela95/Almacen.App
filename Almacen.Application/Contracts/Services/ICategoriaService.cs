@@ -1,4 +1,5 @@
 ﻿using Almacen.Domain.DTOs;
+using Almacen.Domain.DTOs.CategoriaDTO;
 using Almacen.Domain.InputModels.Categoria;
 
 namespace Almacen.Application.Contracts

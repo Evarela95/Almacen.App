@@ -1,5 +1,8 @@
 ﻿using Almacen.Domain.DTOs;
+using Almacen.Domain.DTOs.Producto_SucursalDTO;
+using Almacen.Domain.Entities;
 using Almacen.Domain.InputModels.Producto_Sucursal;
+using Microsoft.EntityFrameworkCore;
 
 namespace Almacen.Application.Contracts
 {

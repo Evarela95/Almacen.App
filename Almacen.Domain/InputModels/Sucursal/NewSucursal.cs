@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -13,17 +14,23 @@ namespace Almacen.Domain.InputModels.Sucursal
         {
             
         }
-
-        public string Nombre_Sucursal { get; private set; }
-
-        public string Telefono { get; private set; }
-
-
-        public string Correo { get; private set; }
+        [Required]
+       
+        [DisplayName("Nombre de sucursal")]
+        public string Nombre_Sucursal { get;  set; }
 
 
+        [Required]
+        public string Telefono { get;  set; }
 
-        public string Direccion { get; private set; }
+
+        [Required]
+        public string Correo { get;  set; }
+
+
+
+        [Required]
+        public string Direccion { get;  set; }
 
 
 

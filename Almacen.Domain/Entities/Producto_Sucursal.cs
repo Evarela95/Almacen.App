@@ -1,4 +1,5 @@
 ﻿using Almacen.Domain.DTOs;
+using Almacen.Domain.DTOs.Producto_SucursalDTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

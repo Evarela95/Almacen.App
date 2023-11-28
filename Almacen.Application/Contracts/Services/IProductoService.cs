@@ -1,4 +1,5 @@
 ﻿using Almacen.Domain.DTOs;
+using Almacen.Domain.DTOs.ProductoDTO;
 using Almacen.Domain.InputModels.Producto;
 
 namespace Almacen.Application.Contracts

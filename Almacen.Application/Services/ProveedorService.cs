@@ -1,6 +1,7 @@
 ﻿using Almacen.Application.Contracts;
 using Almacen.Application.Contracts.Repositories;
 using Almacen.Domain.DTOs;
+using Almacen.Domain.DTOs.ProveedorDTO;
 using Almacen.Domain.Entities;
 using Almacen.Domain.InputModels.Proveedor;
 

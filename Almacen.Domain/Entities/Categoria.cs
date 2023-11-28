@@ -1,4 +1,5 @@
 ﻿using Almacen.Domain.DTOs;
+using Almacen.Domain.DTOs.CategoriaDTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
