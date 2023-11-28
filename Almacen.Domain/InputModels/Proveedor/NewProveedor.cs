@@ -15,12 +15,12 @@ namespace Almacen.Domain.InputModels.Proveedor
         }
 
 
-        public string Nombre_Proveedor { get; private set; }
+        public string Nombre_Proveedor { get;  set; }
 
  
-        public string Telefono { get; private set; }
+        public string Telefono { get;  set; }
 
-        public string Correo { get; private set; }
+        public string Correo { get;  set; }
 
     }
 }

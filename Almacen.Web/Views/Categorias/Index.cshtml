@@ -1,0 +1,58 @@
+﻿@using Almacen.Domain.DTOs.CategoriaDTO;
+@model List<CategoriaDTO>
+@{
+    ViewData["Title"] = "Categorías";
+}
+
+<div class="container-fluid" style="max-width:924px;">
+    <div class="row">
+        <div class="col-8">
+            <h1><i class="fa-solid fa-person"></i> CATEGORÍAS</h1>
+        </div>
+        <div class="4">
+            <a asp-controller="Guests" asp-action="Insert" class="btn btn-outline-success">
+                <i class="fa-solid fa-person-circle-plus"></i>Add
+            </a>
+        </div>
+    </div>
+    
+    <div class="table">
+        <div class="row">
+    
+            <div class="col-3">Categoría</div>
+            <div class="col-6">Acción</div>
+        </div>
+        @foreach (var categoria in Model)
+        {
+            <div id="row-@categoria.Id_Categoria" class="row mb-1 p-1">
+                <div class="col-3">@categoria.Nombre_Categoria</div>
+             
+                <div class="col-6">
+                    <a asp-controller="Categorias" asp-action="Update" asp-route-id="@categoria.Id_Categoria" type="button" id="edit" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i>Edit</a>
+                    <button type="button" id="delete" class="btn btn-outline-danger" onclick="Delete(@categoria.Id_Categoria)"><i class="fa-solid fa-trash-can"></i>Delete</button>
+                </div>
+            </div>
+
+        }
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    function Delete(id_sucursal) {
+        $.ajax({
+            url:"/api/v1/sucursales/Eliminar/" + id_sucursal,
+            method: "DELETE",
+            dataType: "json",
+            contentType: "application/json"
+        }).done(function (response) {
+            if (response.success) {
+                $("#row-" + id_sucursal).remove();
+                toastr.success("Sucursal eliminada")
+            }
+            else {
+                toastr.error(response.errorMessage);
+            }
+        });
+    }
+</script> 

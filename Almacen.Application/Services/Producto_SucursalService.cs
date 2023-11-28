@@ -1,6 +1,7 @@
 ﻿using Almacen.Application.Contracts;
 using Almacen.Application.Contracts.Repositories;
 using Almacen.Domain.DTOs;
+using Almacen.Domain.DTOs.Producto_SucursalDTO;
 using Almacen.Domain.Entities;
 using Almacen.Domain.InputModels.Producto_Sucursal;
 
@@ -53,5 +54,7 @@ namespace Almacen.Application.Services
             _repository.Save();
             return true;
         }
+
+
     }
 }

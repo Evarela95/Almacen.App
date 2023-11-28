@@ -13,19 +13,32 @@ namespace Almacen.Domain.InputModels.Sucursal
         {
 
         }
-        public int Id_Sucursal { get; private set; }
+        public int Id_Sucursal { get;  set; }
 
 
-        public string Nombre_Sucursal { get; private set; }
+        public string Nombre_Sucursal { get;  set; }
 
-        public string Telefono { get; private set; }
+        public string Telefono { get;  set; }
 
-        public string Correo { get; private set; }
-
-
-        public string Direccion { get; private set; }
+        public string Correo { get;  set; }
 
 
+        public string Direccion { get;  set; }
 
+
+        public static implicit operator ExistingSucursal(DTOs.SucursalDTO.SucursalDTO sucursalDTO)
+        {
+            return new ExistingSucursal
+            {
+                Id_Sucursal = sucursalDTO.Id_Sucursal,
+                Nombre_Sucursal = sucursalDTO.Nombre_Sucursal,
+                Telefono = sucursalDTO.Telefono,
+                Correo = sucursalDTO.Correo,
+                Direccion = sucursalDTO.Direccion
+
+
+            };
+        }
     }
+
 }

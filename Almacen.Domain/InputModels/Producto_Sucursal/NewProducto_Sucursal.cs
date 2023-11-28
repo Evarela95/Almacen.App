@@ -16,14 +16,14 @@ namespace Almacen.Domain.InputModels.Producto_Sucursal
         }
 
     
-        public int Cantidad { get; private set; }
+        public int Cantidad { get;  set; }
 
 
         //FKs
   
-        public int Id_Sucursal { get; private set; }
+        public int Id_Sucursal { get;  set; }
 
-        public int Id_Producto { get; private set; }
+        public int Id_Producto { get;  set; }
 
 
     }

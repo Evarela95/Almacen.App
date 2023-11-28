@@ -1,11 +1,12 @@
 ﻿using Almacen.Domain.DTOs;
+using Almacen.Domain.DTOs.SucursalDTO;
 using Almacen.Domain.InputModels.Sucursal;
 
 namespace Almacen.Application.Contracts
 {
     public interface ISucursalService
     {
-        SucursalDTO Get(int id);
+        SucursalDTO Get(int id_sucursal);
 
         List<SucursalDTO> List();
 
@@ -13,6 +14,6 @@ namespace Almacen.Application.Contracts
 
         bool Update(ExistingSucursal existingSucursal);
 
-        bool Delete(int id);
+        bool Delete(int id_sucursal);
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Almacen.Domain.DTOs
+namespace Almacen.Domain.DTOs.MarcaDTO
 {
     public class MarcaDTO
     {

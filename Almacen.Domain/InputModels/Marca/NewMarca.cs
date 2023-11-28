@@ -18,7 +18,7 @@ namespace Almacen.Domain.InputModels.Marca
 
 
 
-        public string Nombre_Marca { get; private set; }
+        public string Nombre_Marca { get;  set; }
     }
 
 

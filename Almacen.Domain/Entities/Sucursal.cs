@@ -1,4 +1,5 @@
 ﻿using Almacen.Domain.DTOs;
+using Almacen.Domain.DTOs.SucursalDTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -69,8 +70,8 @@ namespace Almacen.Domain.Entities
 
         public static SucursalDTO AsDTO(Sucursal sucursal)
         {
-            return new SucursalDTO(sucursal.Id_Sucursal, sucursal.Nombre_Sucursal, sucursal.Telefono, sucursal.Direccion, 
-                sucursal.Correo);
+            return new SucursalDTO(sucursal.Id_Sucursal, sucursal.Nombre_Sucursal, sucursal.Telefono, sucursal.Correo, sucursal.Direccion
+               );
         }
     }
 }

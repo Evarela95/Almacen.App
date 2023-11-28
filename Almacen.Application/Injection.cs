@@ -13,7 +13,8 @@ namespace Almacen.Application
         public static IServiceCollection AddApplication
             (this IServiceCollection services, IConfiguration configuration)
         {
-          
+            //services.Configure<Guard>(options => { });
+
             //var assembly = typeof(Injection).Assembly;
 
             //services.AddMediatR(options => options.RegisterServicesFromAssemblies(assembly));

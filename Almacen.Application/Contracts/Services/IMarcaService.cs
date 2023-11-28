@@ -1,4 +1,5 @@
 ﻿using Almacen.Domain.DTOs;
+using Almacen.Domain.DTOs.MarcaDTO;
 using Almacen.Domain.InputModels.Marca;
 
 namespace Almacen.Application.Contracts

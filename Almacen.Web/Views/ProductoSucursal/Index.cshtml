@@ -1,0 +1,64 @@
+﻿@using Almacen.Domain.DTOs.Producto_SucursalDTO;
+@model List<Producto_SucursalDTO>
+@{
+    ViewData["Title"] = "Productos en sucursales";
+}
+
+
+<div class="container-fluid" style="max-width: 924px;">
+    <div class="row">
+        <div class="col-12">
+            <h1><i class="fa-solid fa-person"></i> Productos en sucursales</h1>
+        </div>
+        <div class="col-4">
+            <a asp-controller="Sucursales" asp-action="Agregar" class="btn btn-outline-success">
+                <i class="fa-solid fa-person-circle-plus"></i>Agregar
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">Sucursal</div>
+        <div class="col-2">Teléfono</div>
+        <div class="col-4">Correo</div>
+        <div class="col-2">Dirección</div>
+
+
+        <div class="col-2">Acción</div>
+    </div>
+
+    @foreach (var sucursal in Model)
+    {
+        <div id="row-@sucursal.Id_Sucursal" class="row mb-1 p-1">
+            <div class="col-2">@sucursal.Nombre_Sucursal</div>
+            <div class="col-2">@sucursal.Telefono</div>
+            <div class="col-4">@sucursal.Correo</div>
+            <div class="col-2">@sucursal.Direccion</div>
+
+
+            <div class="col-2">
+                <a asp-controller="Sucursales" asp-action="ActualizarSucursal" asp-route-id="@sucursal.Id_Sucursal" type="button" id="edit" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i>Editar</a>
+                <button type="button" id="delete" class="btn btn-outline-danger" onclick="Delete(@sucursal.Id_Sucursal)"><i class="fa-solid fa-trash-can"></i>Eliminar</button>
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    function Delete(id_sucursal) {
+        $.ajax({
+            url: "/api/v1/sucursales/Eliminar/" + id_sucursal,
+            method: "DELETE",
+            dataType: "json",
+            contentType: "application/json"
+        }).done(function (response) {
+            if (response.success) {
+                $("#row-" + id_sucursal).remove();
+                toastr.success("Sucursal eliminada")
+            }
+            else {
+                toastr.error(response.errorMessage);
+            }
+        });
+    }
+</script> 

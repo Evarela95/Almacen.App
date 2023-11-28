@@ -20,5 +20,6 @@ namespace Almacen.Application.Contracts.Repositories
         void Delete(TEntity entity);
 
         void Save();
+
     }
 }
