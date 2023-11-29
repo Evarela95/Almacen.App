@@ -7,13 +7,15 @@ using Serilog;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services
+    .AddApplication(builder.Configuration)
+    .AddPersistence(builder.Configuration)
+    .AddInfrastructure(builder.Configuration)
+    .AddPresentation(builder.Configuration);
+
+builder.Host.UseSerilog((context, configuration) =>
+    configuration.ReadFrom.Configuration(context.Configuration));
 builder.Services.AddControllersWithViews();
-builder.Services.AddPersistence(builder.Configuration);
-builder.Services.AddApplication(builder.Configuration);
-builder.Services.AddInfrastructure(builder.Configuration);
-builder.Services.AddPresentation(builder.Configuration);
-
-
 //builder.Host.UseSerilog((context, configuration)
 //    => configuration.ReadFrom.Configuration(context.Configuration));
 
@@ -27,12 +29,13 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 //app.UseSerilogRequestLogging();
-
+app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
