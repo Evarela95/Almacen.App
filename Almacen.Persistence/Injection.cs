@@ -1,6 +1,7 @@
 ﻿using Almacen.Application.Contracts.Contexts;
 using Almacen.Application.Contracts.Repositories;
 using Almacen.Domain.Entities;
+using Almacen.Domain.EntityModels.Users;
 using Almacen.Persistence.Contexts;
 using Almacen.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -26,7 +27,7 @@ namespace Almacen.Persistence
             services.AddRepository<Producto_Sucursal, IProducto_SucursalRepository, Producto_SucursalRepository>();
             services.AddRepository<Proveedor, IProveedorRepository, ProveedorRepository>();
             services.AddRepository<Sucursal, ISucursalRepository, SucursalRepository>();
-
+            services.AddRepository<SystemUser, IUserRepository, UserRepository>();
             return services;
         }
     }
