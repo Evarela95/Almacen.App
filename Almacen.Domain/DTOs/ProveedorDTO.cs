@@ -26,5 +26,23 @@ namespace Almacen.Domain.DTOs.ProveedorDTO
 
         
         public string Correo { get; private set; }
+
+
+
+        public bool HasChange { get; private set; }
+
+
+        public void Update(string nombre_proveedor, string telefono, string correo)
+        {
+            HasChange =
+             !nombre_proveedor.Equals(Nombre_Proveedor, StringComparison.OrdinalIgnoreCase) &&
+             !telefono.Equals(Telefono, StringComparison.OrdinalIgnoreCase) &&
+            !correo.Equals(Correo, StringComparison.OrdinalIgnoreCase);
+
+            Nombre_Proveedor = nombre_proveedor;
+            Telefono = telefono;
+            Correo = correo;
+          
+        }
     }
 }

@@ -27,14 +27,14 @@ namespace Almacen.Domain.DTOs.ProductoDTO
 
         public int Id_Producto { get; private set; }
 
-     
+
         public string Nombre_Producto { get; private set; }
 
         public string Descripcion { get; private set; }
 
         public decimal Precio_Compra { get; private set; }
 
-   
+
         public decimal Precio_Venta { get; private set; }
 
 
@@ -48,5 +48,32 @@ namespace Almacen.Domain.DTOs.ProductoDTO
 
         public int Id_Marca { get; private set; }
         public Marca Marca { get; private set; }
+
+
+
+        public bool HasChange { get; private set; }
+
+
+        public void Update(string nombre_producto, string descripcion, decimal precio_compra, decimal precio_venta,
+            int id_categoria, int id_proveedor, int id_marca)
+        {
+            HasChange =
+             !nombre_producto.Equals(Nombre_Producto, StringComparison.OrdinalIgnoreCase) &&
+             !descripcion.Equals(Descripcion, StringComparison.OrdinalIgnoreCase) &&
+            !precio_compra.Equals(Precio_Compra) &&
+            !precio_venta.Equals(Precio_Venta) &&
+              !id_categoria.Equals(Id_Categoria) &&
+                !id_proveedor.Equals(Id_Proveedor) &&
+                   !id_marca.Equals(Id_Marca);
+
+
+            Nombre_Producto = nombre_producto;
+            Descripcion = descripcion;
+            Precio_Compra = precio_compra;
+            Precio_Venta = precio_venta;
+            Id_Categoria = id_categoria;
+            Id_Proveedor = id_proveedor;
+            Id_Marca = id_marca;
+        }
     }
 }

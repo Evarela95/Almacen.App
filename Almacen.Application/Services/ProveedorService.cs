@@ -46,10 +46,10 @@ namespace Almacen.Application.Services
             return true;
         }
 
-        public bool Delete(int id)
+        public bool Delete(int Id_Proveedor)
         {
-            Proveedor categoria = _repository.Get(s => s.Id_Proveedor == id);
-            _repository.Delete(categoria);
+            Proveedor proveedor = _repository.Get(s => s.Id_Proveedor == Id_Proveedor);
+            _repository.Delete(proveedor);
             _repository.Save();
             return true;
         }

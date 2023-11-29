@@ -50,8 +50,8 @@ namespace Almacen.Application.Services
 
         public bool Delete(int id)
         {
-            Producto categoria = _repository.Get(s => s.Id_Producto == id);
-            _repository.Delete(categoria);
+            Producto producto = _repository.Get(s => s.Id_Producto == id);
+            _repository.Delete(producto);
             _repository.Save();
             return true;
         }

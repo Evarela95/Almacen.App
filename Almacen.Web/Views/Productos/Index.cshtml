@@ -1,0 +1,72 @@
+﻿@using Almacen.Domain.DTOs.ProductoDTO;
+@model List<ProductoDTO>
+@{
+    ViewData["Title"] = "Productos";
+}
+
+
+<div class="container-fluid" style="max-width: 924px;">
+    <div class="row">
+        <div class="col-12">
+            <h1><i class="fa-solid fa-person"></i> Productos</h1>
+        </div>
+        <div class="col-4">
+            <a asp-controller="Productos" asp-action="AgregarProducto" class="btn btn-outline-success">
+                <i class="fa-solid fa-person-circle-plus"></i>Agregar
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">Nombre</div>
+        <div class="col-2">Descripción</div>
+        <div class="col-2">Precio de compra</div>
+        <div class="col-2">Precio de venta</div>
+        <div class="col-2">Categoría</div>
+        <div class="col-2">Proveedor</div>
+        <div class="col-2">Marca</div>
+
+
+        <div class="col-2">Acción</div>
+    </div>
+
+    @foreach (var producto in Model)
+    {
+        <div id="row-@producto.Id_Producto" class="row mb-1 p-1">
+            <div class="col-2">@producto.Nombre_Producto</div>
+            <div class="col-2">@producto.Descripcion</div>
+            <div class="col-2">@producto.Precio_Compra</div>
+            <div class="col-2">@producto.Precio_Venta</div>
+            <div class="col-2">@producto.Categoria.Nombre_Categoria</div>
+            <div class="col-2">@producto.Proveedor.Nombre_Proveedor</div>
+            <div class="col-2">@producto.Marca.Nombre_Marca</div>
+
+
+            <div class="col-2">
+                <a asp-controller="Sucursales" asp-action="ActualizarSucursal" asp-route-id="@producto.Id_Producto" type="button" id="edit" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i>Editar</a>
+                <button type="button" id="delete" class="btn btn-outline-danger" onclick="Delete(@producto.Id_Producto)"><i class="fa-solid fa-trash-can"></i>Eliminar</button>
+
+             
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    function Delete(Id_Producto) {
+        $.ajax({
+            url: "/api/v1/sucursales/Eliminar/" + Id_Producto,
+            method: "DELETE",
+            dataType: "json",
+            contentType: "application/json"
+        }).done(function (response) {
+            if (response.success) {
+                $("#row-" + Id_Producto).remove();
+                toastr.success("Producto eliminado")
+            }
+            else {
+                toastr.error(response.errorMessage);
+            }
+        });
+    }
+</script> 

@@ -6,7 +6,7 @@ namespace Almacen.Application.Contracts
 {
     public interface ICategoriaService
     {
-        CategoriaDTO Get(int id);
+        CategoriaDTO Get(int id_categoria);
 
         List<CategoriaDTO> List();
 
@@ -14,6 +14,6 @@ namespace Almacen.Application.Contracts
 
         bool Update(ExistingCategoria existingCategoria);
 
-        bool Delete(int id);
+        bool Delete(int id_categoria);
     }
 }

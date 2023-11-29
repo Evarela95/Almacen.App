@@ -16,25 +16,25 @@ namespace Almacen.Domain.InputModels.Producto
         }
 
 
-        public int Id_Producto { get; private set; }
+        public int Id_Producto { get;  set; }
 
-        public string Nombre_Producto { get; private set; }
+        public string Nombre_Producto { get;  set; }
 
-        public string Descripcion { get; private set; }
+        public string Descripcion { get;  set; }
 
-        public decimal Precio_Compra { get; private set; }
+        public decimal Precio_Compra { get;  set; }
 
 
-        public decimal Precio_Venta { get; private set; }
+        public decimal Precio_Venta { get;  set; }
 
 
         // FKs
-        public int Id_Categoria { get; private set; }
+        public int Id_Categoria { get;  set; }
 
  
-        public int Id_Proveedor { get; private set; }
+        public int Id_Proveedor { get;  set; }
      
-        public int Id_Marca { get; private set; }
+        public int Id_Marca { get;  set; }
    
     }
 }

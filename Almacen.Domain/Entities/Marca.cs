@@ -19,7 +19,7 @@ namespace Almacen.Domain.Entities
         public Marca( string marca)
         {
 
-            marca = Nombre_Marca;
+            Nombre_Marca = marca;
         }
 
 
@@ -36,7 +36,7 @@ namespace Almacen.Domain.Entities
 
         public void Update(string marca)
         {
-            marca = Nombre_Marca;
+            Nombre_Marca =  marca;
         }
 
 

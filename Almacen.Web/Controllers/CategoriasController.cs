@@ -1,4 +1,6 @@
 ﻿using Almacen.Application.Contracts;
+using Almacen.Domain.InputModels.Categoria;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace Almacen.Web.Controllers
@@ -18,6 +20,82 @@ namespace Almacen.Web.Controllers
         {
             var categorias = _service.List();
             return View(categorias);
+        }
+
+
+
+
+
+        public IActionResult AgregarCategoria()
+        {
+            return View(new NewCategoria());
+        }
+
+
+
+        [HttpPost]
+        public IActionResult AgregarCategoria(NewCategoria newCategoria)
+        {
+            if (ModelState.IsValid)
+            {
+                if (!_service.Insert(newCategoria))
+                {
+                    ModelState.AddModelError(string.Empty, "Error");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            return View(new NewCategoria());
+
+        }
+
+
+
+        [HttpGet]
+        [Route("/categorias/ActualizarCategoria/{id_categoria}")]
+        public IActionResult ActualizarCategoria([FromRoute] int id_categoria)
+        {
+            ExistingCategoria existingCategoria = _service.Get(id_categoria);
+            return View(existingCategoria);
+        }
+
+        [HttpPost]
+        [Route("/categorias/ActualizarCategoria/{id_categoria}")]
+        public IActionResult ActualizarCategoria(ExistingCategoria existingCategoria)
+        {
+            if (ModelState.IsValid)
+            {
+                if (!_service.Update(existingCategoria))
+                {
+                    ModelState.AddModelError(string.Empty, "Error al actualizar");
+
+                    return View(existingCategoria);
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+
+            return View(existingCategoria);
+        }
+
+
+
+
+
+        [HttpDelete]
+        [Route("/api/v1/categorias/Eliminar/{id_categoria}")]
+        public JsonResult Eliminar([FromRoute] int id_categoria)
+        {
+            if (_service.Delete(id_categoria))
+            {
+                return Json(new { success = true });
+            }
+
+            return Json(new { success = false, errorMessage = "Error al eliminar" });
         }
     }
 }

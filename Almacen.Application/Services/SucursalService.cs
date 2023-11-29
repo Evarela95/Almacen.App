@@ -48,8 +48,8 @@ namespace Almacen.Application.Services
 
         public bool Delete(int id)
         {
-            Sucursal categoria = _repository.Get(s => s.Id_Sucursal == id);
-            _repository.Delete(categoria);
+            Sucursal sucursal = _repository.Get(s => s.Id_Sucursal == id);
+            _repository.Delete(sucursal);
             _repository.Save();
             return true;
         }
