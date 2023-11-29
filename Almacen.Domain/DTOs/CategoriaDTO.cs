@@ -17,8 +17,21 @@ namespace Almacen.Domain.DTOs.CategoriaDTO
 
         public int Id_Categoria { get; private set; }
 
-       
+
         public string Nombre_Categoria { get; private set; }
-      
+
+
+        public bool HasChange { get; private set; }
+
+
+        public void Update(string nombre_categoria)
+        {
+            HasChange =
+             !nombre_categoria.Equals(Nombre_Categoria, StringComparison.OrdinalIgnoreCase);
+
+            Nombre_Categoria = nombre_categoria;
+
+
+        }
     }
 }

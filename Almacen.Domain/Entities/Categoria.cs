@@ -18,7 +18,7 @@ namespace Almacen.Domain.Entities
 
         public Categoria (string categoria)
         {
-            categoria = Nombre_Categoria;
+            Nombre_Categoria = categoria;
         }
 
 
@@ -34,7 +34,7 @@ namespace Almacen.Domain.Entities
 
         public void Update(string categoria)
         {
-            categoria = Nombre_Categoria;
+            Nombre_Categoria = categoria;
         }
 
 

@@ -16,8 +16,19 @@ namespace Almacen.Domain.InputModels.Marca
         }
 
 
-        public int Id_Marca { get; private set; }
+        public int Id_Marca { get;  set; }
 
-        public string Nombre_Marca { get; private set; }
+        public string Nombre_Marca { get;  set; }
+
+
+
+        public static implicit operator ExistingMarca(DTOs.MarcaDTO.MarcaDTO marca)
+        {
+            return new ExistingMarca
+            {
+                Id_Marca = marca.Id_Marca,
+                Nombre_Marca = marca.Nombre_Marca
+            };
+        }
     }
 }

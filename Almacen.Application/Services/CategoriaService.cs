@@ -46,9 +46,9 @@ namespace Almacen.Application.Services
             return true;
         }
 
-        public bool Delete(int id)
+        public bool Delete(int id_categoria)
         {
-            Categoria categoria = _repository.Get(s => s.Id_Categoria == id);
+            Categoria categoria = _repository.Get(s => s.Id_Categoria == id_categoria);
             _repository.Delete(categoria);
             _repository.Save();
             return true;

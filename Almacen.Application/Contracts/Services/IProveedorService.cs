@@ -14,6 +14,6 @@ namespace Almacen.Application.Contracts
 
         bool Update(ExistingProveedor existingProveedor);
 
-        bool Delete(int id);
+        bool Delete(int Id_Proveedor);
     }
 }

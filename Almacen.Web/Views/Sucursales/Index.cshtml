@@ -40,8 +40,8 @@
                 <a asp-controller="Sucursales" asp-action="ActualizarSucursal" asp-route-id="@sucursal.Id_Sucursal" type="button" id="edit" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i>Editar</a>
                 <button type="button" id="delete" class="btn btn-outline-danger" onclick="Delete(@sucursal.Id_Sucursal)"><i class="fa-solid fa-trash-can"></i>Eliminar</button>
 
-                <a asp-controller="ProductoSucursal" asp-action="Index" asp-route-id="@sucursal.Id_Sucursal" type="button" id="lista" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i>Productos disponibles</a>
-            </div>
+            @*     <a asp-controller="ProductoSucursal" asp-action="Index" asp-route-id="@sucursal.Id_Sucursal" type="button" id="lista" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i>Productos disponibles</a>
+            *@ </div>
         </div>
     }
 </div>

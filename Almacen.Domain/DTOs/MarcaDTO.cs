@@ -20,5 +20,17 @@ namespace Almacen.Domain.DTOs.MarcaDTO
 
 
         public string Nombre_Marca { get; private set; }
+
+
+        public bool HasChange { get; private set; }
+
+        public void Update(string nombre_marca)
+        {
+            HasChange =
+             !nombre_marca.Equals(Nombre_Marca, StringComparison.OrdinalIgnoreCase);
+
+            Nombre_Marca = nombre_marca;
+            
+        }
     }
 }

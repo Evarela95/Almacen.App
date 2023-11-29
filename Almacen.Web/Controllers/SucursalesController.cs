@@ -93,5 +93,11 @@ namespace Almacen.Web.Controllers
             return Json(new { success = false, errorMessage = "Error al eliminar" });
         }
 
+
+
+
+
+
+
     }
 }

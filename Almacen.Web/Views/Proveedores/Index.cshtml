@@ -1,0 +1,63 @@
+﻿@using Almacen.Domain.DTOs.ProveedorDTO;
+@model List<ProveedorDTO>
+@{
+    ViewData["Title"] = "Proveedores";
+}
+
+
+<div class="container-fluid" style="max-width: 924px;">
+    <div class="row">
+        <div class="col-12">
+            <h1><i class="fa-solid fa-person"></i> Proveedores</h1>
+        </div>
+        <div class="col-4">
+            <a asp-controller="Proveedores" asp-action="AgregarProveedor" class="btn btn-outline-success">
+                <i class="fa-solid fa-person-circle-plus"></i>Agregar
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">Proveedor</div>
+        <div class="col-2">Teléfono</div>
+        <div class="col-4">Correo</div>
+        <div class="col-2">Acción</div>
+    </div>
+
+    @foreach (var proveedor in Model)
+    {
+        <div id="row-@proveedor.Id_Proveedor" class="row mb-1 p-1">
+            <div class="col-2">@proveedor.Nombre_Proveedor</div>
+            <div class="col-2">@proveedor.Telefono</div>
+            <div class="col-4">@proveedor.Correo</div>
+
+
+
+            <div class="col-2">
+                <a asp-controller="Proveedores" asp-action="ActualizarProveedor" asp-route-id="@proveedor.Id_Proveedor" type="button" id="edit" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i>Editar</a>
+                <button type="button" id="delete" class="btn btn-outline-danger" onclick="Delete(@proveedor.Id_Proveedor)"><i class="fa-solid fa-trash-can"></i>Eliminar</button>
+
+            </div>
+        </div>
+    }
+</div>
+
+
+<script type="text/javascript">
+    function Delete(Id_Proveedor) {
+        $.ajax({
+            url: "/api/v1/proveedores/Eliminar/" + Id_Proveedor,
+            method: "DELETE",
+            dataType: "json",
+            contentType: "application/json"
+        }).done(function (response) {
+            if (response.success) {
+                $("#row-" + Id_Proveedor).remove();
+                toastr.success("Proveedor eliminado")
+            }
+            else {
+                toastr.error(response.errorMessage);
+            }
+        });
+    }
+</script> 

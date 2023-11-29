@@ -46,9 +46,9 @@ namespace Almacen.Application.Services
             return true;
         }
 
-        public bool Delete(int id)
+        public bool Delete(int Id_Marca)
         {
-            Marca marca = _repository.Get(s => s.Id_Marca == id);
+            Marca marca = _repository.Get(s => s.Id_Marca == Id_Marca);
             _repository.Delete(marca);
             _repository.Save();
             return true;

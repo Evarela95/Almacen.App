@@ -10,8 +10,8 @@
             <h1><i class="fa-solid fa-person"></i> CATEGORÍAS</h1>
         </div>
         <div class="4">
-            <a asp-controller="Guests" asp-action="Insert" class="btn btn-outline-success">
-                <i class="fa-solid fa-person-circle-plus"></i>Add
+            <a asp-controller="Categorias" asp-action="AgregarCategoria" class="btn btn-outline-success">
+                <i class="fa-solid fa-person-circle-plus"></i>Agregar
             </a>
         </div>
     </div>
@@ -28,8 +28,8 @@
                 <div class="col-3">@categoria.Nombre_Categoria</div>
              
                 <div class="col-6">
-                    <a asp-controller="Categorias" asp-action="Update" asp-route-id="@categoria.Id_Categoria" type="button" id="edit" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i>Edit</a>
-                    <button type="button" id="delete" class="btn btn-outline-danger" onclick="Delete(@categoria.Id_Categoria)"><i class="fa-solid fa-trash-can"></i>Delete</button>
+                    <a asp-controller="Categorias" asp-action="ActualizarCategoria" asp-route-id="@categoria.Id_Categoria" type="button" id="edit" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i>Edit</a>
+                    <button type="button" id="delete" class="btn btn-outline-danger" onclick="Delete(@categoria.Id_Categoria)"><i class="fa-solid fa-trash-can"></i>Eliminar</button>
                 </div>
             </div>
 
@@ -39,16 +39,16 @@
 </div>
 
 <script type="text/javascript">
-    function Delete(id_sucursal) {
+    function Delete(id_categoria) {
         $.ajax({
-            url:"/api/v1/sucursales/Eliminar/" + id_sucursal,
+            url:"/api/v1/categorias/Eliminar/" + id_categoria,
             method: "DELETE",
             dataType: "json",
             contentType: "application/json"
         }).done(function (response) {
             if (response.success) {
-                $("#row-" + id_sucursal).remove();
-                toastr.success("Sucursal eliminada")
+                $("#row-" + id_categoria).remove();
+                toastr.success("Categoría eliminada")
             }
             else {
                 toastr.error(response.errorMessage);
