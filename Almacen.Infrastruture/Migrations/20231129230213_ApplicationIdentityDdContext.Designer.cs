@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Almacen.Infrastruture.Migrations
 {
     [DbContext(typeof(ApplicationIdentityDbContext))]
-    [Migration("20231129180457_ApplicationIdentityDdContext")]
+    [Migration("20231129230213_ApplicationIdentityDdContext")]
     partial class ApplicationIdentityDdContext
     {
         /// <inheritdoc />
