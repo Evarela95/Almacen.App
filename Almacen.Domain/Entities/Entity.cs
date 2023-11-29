@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Almacen.Domain.Entities
 {
-    public class Entity
+    public abstract class Entity
     {
+
     }
 }

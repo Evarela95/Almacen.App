@@ -3,6 +3,7 @@ using Almacen.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Almacen.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231129172038_ApplicationDdContext")]
+    partial class ApplicationDdContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -187,52 +190,6 @@ namespace Almacen.Persistence.Migrations
                     b.ToTable("Sucursales");
                 });
 
-            modelBuilder.Entity("Almacen.Domain.EntityModels.Authorization.PolicyPermission", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Action")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Controller")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Permissions");
-                });
-
-            modelBuilder.Entity("Almacen.Domain.EntityModels.Users.SystemUser", b =>
-                {
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Email");
-
-                    b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("PolicyPermissionSystemUser", b =>
-                {
-                    b.Property<int>("PermissionsId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UsersEmail")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("PermissionsId", "UsersEmail");
-
-                    b.HasIndex("UsersEmail");
-
-                    b.ToTable("PolicyPermissionSystemUser");
-                });
-
             modelBuilder.Entity("Almacen.Domain.Entities.Producto", b =>
                 {
                     b.HasOne("Almacen.Domain.Entities.Categoria", "Categoria")
@@ -277,21 +234,6 @@ namespace Almacen.Persistence.Migrations
                     b.Navigation("Producto");
 
                     b.Navigation("Sucursal");
-                });
-
-            modelBuilder.Entity("PolicyPermissionSystemUser", b =>
-                {
-                    b.HasOne("Almacen.Domain.EntityModels.Authorization.PolicyPermission", null)
-                        .WithMany()
-                        .HasForeignKey("PermissionsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Almacen.Domain.EntityModels.Users.SystemUser", null)
-                        .WithMany()
-                        .HasForeignKey("UsersEmail")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

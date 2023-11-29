@@ -20,7 +20,10 @@ namespace Almacen.Application
             //services.AddMediatR(options => options.RegisterServicesFromAssemblies(assembly));
             //services.AddValidatorsFromAssembly(assembly);
 
-
+            services.Configure<Guard>(options => { });
+            var assembly = typeof(Injection).Assembly;
+            services.AddMediatR(options => options.RegisterServicesFromAssemblies(assembly));
+            services.AddValidatorsFromAssembly(assembly);
 
             services.AddScoped<ICategoriaService, CategoriaService>();
             services.AddScoped<IMarcaService, MarcaService>();
