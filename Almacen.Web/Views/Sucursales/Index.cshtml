@@ -4,27 +4,33 @@
     ViewData["Title"] = "Sucursales";
 }
 
-
-<div class="container-fluid" style="max-width: 924px;">
-    <div class="row">
-        <div class="col-12">
-            <h1><i class="fa-solid fa-person"></i> Sucursales</h1>
-        </div>
-        <div class="col-4">
-            <a asp-controller="Sucursales" asp-action="AgregarSucursal" class="btn btn-outline-success">
-                <i class="fa-solid fa-person-circle-plus"></i>Agregar
-            </a>
-        </div>
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Sucursales</h1>
+    <div class="col-4">
+        <a asp-controller="Sucursales" asp-action="AgregarSucursal" class="btn btn-outline-success">
+            <i class="fa-solid fa-person-circle-plus"></i>Agregar
+        </a>
     </div>
+</div>
+<br>
+<br>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Productos
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Sucursal</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Dirección</th>
+                </tr>
+            </thead>
 
-    <div class="row">
-        <div class="col-2">Sucursal</div>
-        <div class="col-2">Teléfono</div>
-        <div class="col-4">Correo</div>
-        <div class="col-2">Dirección</div>
-       
-
-        <div class="col-2">Acción</div>
+        </table>
     </div>
 
     @foreach (var sucursal in Model)

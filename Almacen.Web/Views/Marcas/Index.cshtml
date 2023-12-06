@@ -4,22 +4,31 @@
     ViewData["Title"] = "Marcas";
 }
 
-<div class="container-fluid" style="max-width:924px;">
-    <div class="row">
-        <div class="col-8">
-            <h1><i class="fa-solid fa-person"></i> MARCAS</h1>
-        </div>
-        <div class="4">
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Marcas</h1>
+    <div class="4">
             <a asp-controller="Marcas" asp-action="AgregarMarca" class="btn btn-outline-success">
                 <i class="fa-solid fa-person-circle-plus"></i>Agregar
             </a>
         </div>
     </div>
+<br>
+<br>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+           Marcas
+        </div>
+        <div class="card-body">
+        <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre de Marca</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
 
-    <div class="table">
-        <div class="row">
-            <div class="col-3">Nombre de marca</div>
-            <div class="col-6">Actiones</div>
+            </table>
         </div>
         @foreach (var marcas in Model)
         {
@@ -34,7 +43,7 @@
         }
     </div>
 
-</div>
+</>
 <script type="text/javascript">
     function Delete(Id_Marca) {
         $.ajax({

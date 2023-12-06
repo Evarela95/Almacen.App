@@ -4,29 +4,37 @@
     ViewData["Title"] = "Categorías";
 }
 
-<div class="container-fluid" style="max-width:924px;">
-    <div class="row">
-        <div class="col-8">
-            <h1><i class="fa-solid fa-person"></i> CATEGORÍAS</h1>
-        </div>
-        <div class="4">
-            <a asp-controller="Categorias" asp-action="AgregarCategoria" class="btn btn-outline-success">
-                <i class="fa-solid fa-person-circle-plus"></i>Agregar
-            </a>
-        </div>
+<link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Categorias</h1>
+    <div class="4">
+        <a asp-controller="Categorias" asp-action="AgregarCategoria" class="btn btn-outline-success">
+            <i class="fa-solid fa-person-circle-plus"></i>Agregar
+        </a>
     </div>
-    
-    <div class="table">
-        <div class="row">
-    
-            <div class="col-3">Categoría</div>
-            <div class="col-6">Acción</div>
+    <br><br>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Categorias
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Accion</th>
+                    </tr>
+                </thead>
+
+            </table>
         </div>
         @foreach (var categoria in Model)
         {
             <div id="row-@categoria.Id_Categoria" class="row mb-1 p-1">
                 <div class="col-3">@categoria.Nombre_Categoria</div>
-             
+
                 <div class="col-6">
                     <a asp-controller="Categorias" asp-action="ActualizarCategoria" asp-route-id="@categoria.Id_Categoria" type="button" id="edit" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i>Edit</a>
                     <button type="button" id="delete" class="btn btn-outline-danger" onclick="Delete(@categoria.Id_Categoria)"><i class="fa-solid fa-trash-can"></i>Eliminar</button>
@@ -37,6 +45,8 @@
     </div>
 
 </div>
+
+<script src="/js/datatables-simple-demo.js"></script>
 
 <script type="text/javascript">
     function Delete(id_categoria) {
