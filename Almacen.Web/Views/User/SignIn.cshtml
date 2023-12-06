@@ -5,35 +5,49 @@
     ViewData["Title"] = "Login Page";
 
 }
-<div class="container-fluid justify-content-center">
-    <form method="post">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <fieldset>
-            <legend>Login</legend>
-            <div class="col-4">
-                <label asp-for="Email" class="form-label"> Email Address:</label>
-                <input asp-for="Email" type="email" class="form-control" placeholder="Email address" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="col-4">
-                <label asp-for="Password" class="form-label"> Password:</label>
-                <input asp-for="Password" type="password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="cold-4">
-                <button type="submit" class="btn btn-primary">Sign In</button>
-            </div>
-        </fieldset>
-    </form>
 
-    <form asp-action="ExternalSignin" method="post" asp-route-returnUrl="@Model.ReturnUrl">
-        @foreach (var externalLogin in Model.ExternalLogins)
-        {
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+     data-sidebar-position="fixed" data-header-position="fixed">
+    <div class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+        <div class="d-flex align-items-center justify-content-center w-100">
+            <div class="row justify-content-center w-100">
+                <div class="col-md-8 col-lg-6 col-xxl-3">
+                    <div class="card mb-0">
+                        <div class="card-body">
+                            <form method="post">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <fieldset>
+                                    <h1 class="text-nowrap text-center d-block py-3 w-100">Login</h1>
+                                    <div class="mb-3">
+                                        <label asp-for="Email" class="form-label"> Email Address:</label>
+                                        <input asp-for="Email" type="email" class="form-control" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label asp-for="Password" class="form-label"> Password:</label>
+                                        <input asp-for="Password" type="password" class="form-control" />
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+                                    <div class="cold-4">
+                                        <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign In</button>
+                                    </div>
+                                </fieldset>
+                            </form>
 
-            <button type="submit" class="btn btn-outline-secondary" name="provider" value="@externalLogin.Name">
-                @externalLogin.DisplayName
-            </button>
+                            <form asp-action="ExternalSignin" method="post" asp-route-returnUrl="@Model.ReturnUrl">
+                                @foreach (var externalLogin in Model.ExternalLogins)
+                                {
 
-        }
-    </form>
+                                    <button type="submit" class="btn btn-danger w-100 py-8 fs-4 mb-4 rounded-2" name="provider" value="@externalLogin.Name">
+                                        @externalLogin.DisplayName
+                                    </button>
+
+                                }
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
