@@ -6,42 +6,45 @@
 
 <div class="container-fluid px-4">
     <h1 class="mt-4">Marcas</h1>
-    <div class="4">
-            <a asp-controller="Marcas" asp-action="AgregarMarca" class="btn btn-outline-success">
-                <i class="fa-solid fa-person-circle-plus"></i>Agregar
-            </a>
-        </div>
+    <div class="col-4">
+        <a asp-controller="Marcas" asp-action="AgregarMarca" class="btn btn-outline-success">
+            <i class="fa-solid fa-person-circle-plus"></i>Agregar
+        </a>
     </div>
-<br>
-<br>
+    <br>
+    <br>
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-           Marcas
+            Marcas
         </div>
         <div class="card-body">
-        <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">Nombre de Marca</th>
-                        <th scope="col">Acciones</th>
-                    </tr>
-                </thead>
-
-            </table>
-        </div>
-        @foreach (var marcas in Model)
-        {
-            <div id="row-@marcas.Id_Marca" class="row mb-1 p-1">
-                <div class="col-3">@marcas.Nombre_Marca</div>
-                <div class="col-6">
-                    <a asp-controller="Marcas" asp-action="ActualizarMarca" asp-route-id="@marcas.Id_Marca" type="button" id="edit" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i>Editar</a>
-                    <button type="button" id="delete" class="btn btn-outline-danger" onclick="Delete(@marcas.Id_Marca)"><i class="fa-solid fa-trash-can"></i>Eliminar</button>
-                </div>
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="align-middle">Nombre de Marca</th> 
+                            <th scope="col" class="align-middle">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var marca in Model)
+                        {
+                            <tr>
+                                <td class="align-middle">@marca.Nombre_Marca</td>
+                                <td class="align-middle">
+                                    <a asp-controller="Marcas" asp-action="ActualizarMarca" asp-route-id="@marca.Id_Marca" type="button" id="edit" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i>Editar</a>
+                                    <button type="button" id="delete" class="btn btn-outline-danger" onclick="Delete(@marca.Id_Marca)"><i class="fa-solid fa-trash-can"></i>Eliminar</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
-
-        }
+        </div>
     </div>
+</div>
+
 
 </>
 <script type="text/javascript">

@@ -12,9 +12,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Almacen.Web</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Almacen</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -22,37 +22,73 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
-
 
                         @if (!User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Signin">Login</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="User" asp-action="Signin">Login</a>
                             </li>
-
                         }
 
                         @if (User.Identity.IsAuthenticated)
                         {
-                           
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Sucursales
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Sucursales" asp-action="Index">Ver Sucursales</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Sucursales" asp-action="AgregarSucursal">Agregar sucursal</a></li>
 
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Sucursales" asp-action="Index">Sucursales</a>
+                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Categorias" asp-action="Index">Categorias</a>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Categorias
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Categorias" asp-action="Index">Ver Categorias</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Categorias" asp-action="AgregarCategoria">Agregar categoria</a></li>
+
+                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Marcas" asp-action="Index">Marcas</a>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Marcas
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Marcas" asp-action="Index">Ver Marcas</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Marcas" asp-action="AgregarMarca">Agregar marca</a></li>
+
+                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Proveedores" asp-action="Index">Proveedores</a>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Proveedores
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown4">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Proveedores" asp-action="Index">Ver Proveedores</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Proveedores" asp-action="AgregarProveedor">Agregar proveedor</a></li>
+
+                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Productos" asp-action="Index">Productos</a>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown5" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Productos
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown5">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Productos" asp-action="Index">Ver Productos</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Productos" asp-action="AgregarProducto">Agregar producto</a></li>
+
+                                </ul>
                             </li>
+
                         }
 
                     </ul>

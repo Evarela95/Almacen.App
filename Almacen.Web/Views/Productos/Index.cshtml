@@ -4,59 +4,59 @@
     ViewData["Title"] = "Productos";
 }
 
-
 <div class="container-fluid px-4">
     <h1 class="mt-4">Productos</h1>
-        <div class="col-4">
-            <a asp-controller="Productos" asp-action="AgregarProducto" class="btn btn-outline-success">
-                <i class="fa-solid fa-person-circle-plus"></i>Agregar
-            </a>
-        </div>
+    <div class="col-4">
+        <a asp-controller="Productos" asp-action="AgregarProducto" class="btn btn-outline-success">
+            <i class="fa-solid fa-person-circle-plus"></i>Agregar
+        </a>
     </div>
-    <br><br>
-    <div class="card mb-4">
-        <div class="card-header">
-            <i class="fas fa-table me-1"></i>
-            Productos
-        </div>
-        <div class="card-body">
-        <table class="table table-bordered">
+</div>
+<br>
+<br>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Productos
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered text-center">
                 <thead>
                     <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Descripcion</th>
-                        <th scope="col">Precio de compra</th>
-                        <th scope="col">Precio de venta</th>
-                        <th scope="col">Categoria</th>
-                        <th scope="col">Proveedor</th>
-                        <th scope="col">Marca</th>
+                        <th scope="col" class="align-middle">Nombre</th> 
+                        <th scope="col" class="align-middle">Descripción</th>
+                        <th scope="col" class="align-middle">Precio de compra</th>
+                        <th scope="col" class="align-middle">Precio de venta</th>
+                        <th scope="col" class="align-middle">Categoría</th>
+                        <th scope="col" class="align-middle">Proveedor</th>
+                        <th scope="col" class="align-middle">Marca</th>
+                        <th scope="col" class="align-middle">Acciones</th>
                     </tr>
                 </thead>
-
+                <tbody>
+                    @foreach (var producto in Model)
+                    {
+                        <tr>
+                            <td class="align-middle">@producto.Nombre_Producto</td>
+                            <td class="align-middle">@producto.Descripcion</td>
+                            <td class="align-middle">@producto.Precio_Compra</td>
+                            <td class="align-middle">@producto.Precio_Venta</td>
+                            <td class="align-middle">@producto.Categoria.Nombre_Categoria</td>
+                            <td class="align-middle">@producto.Proveedor.Nombre_Proveedor</td>
+                            <td class="align-middle">@producto.Marca.Nombre_Marca</td>
+                            <td class="align-middle">
+                                <a asp-controller="Productos" asp-action="ActualizarProducto" asp-route-id="@producto.Id_Producto" type="button" id="edit" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i>Editar</a>
+                                <button type="button" id="delete" class="btn btn-outline-danger" onclick="Delete(@producto.Id_Producto)"><i class="fa-solid fa-trash-can"></i>Eliminar</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
             </table>
         </div>
-
-    @foreach (var producto in Model)
-    {
-        <div id="row-@producto.Id_Producto" class="row mb-1 p-1">
-            <div class="col-2">@producto.Nombre_Producto</div>
-            <div class="col-2">@producto.Descripcion</div>
-            <div class="col-2">@producto.Precio_Compra</div>
-            <div class="col-2">@producto.Precio_Venta</div>
-            <div class="col-2">@producto.Categoria.Nombre_Categoria</div>
-            <div class="col-2">@producto.Proveedor.Nombre_Proveedor</div>
-            <div class="col-2">@producto.Marca.Nombre_Marca</div>
-
-
-            <div class="col-2">
-                <a asp-controller="Sucursales" asp-action="ActualizarSucursal" asp-route-id="@producto.Id_Producto" type="button" id="edit" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i>Editar</a>
-                <button type="button" id="delete" class="btn btn-outline-danger" onclick="Delete(@producto.Id_Producto)"><i class="fa-solid fa-trash-can"></i>Eliminar</button>
-
-             
-            </div>
-        </div>
-    }
+    </div>
 </div>
+
 
 <script type="text/javascript">
     function Delete(Id_Producto) {

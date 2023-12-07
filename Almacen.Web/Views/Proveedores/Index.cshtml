@@ -4,53 +4,51 @@
     ViewData["Title"] = "Proveedores";
 }
 
-
 <div class="container-fluid px-4">
     <h1 class="mt-4">Proveedores</h1>
-        <div class="col-4">
-            <a asp-controller="Proveedores" asp-action="AgregarProveedor" class="btn btn-outline-success">
-                <i class="fa-solid fa-person-circle-plus"></i>Agregar
-            </a>
+    <div class="col-4">
+        <a asp-controller="Proveedores" asp-action="AgregarProveedor" class="btn btn-outline-success">
+            <i class="fa-solid fa-person-circle-plus"></i>Agregar
+        </a>
+    </div>
+    <br>
+    <br>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Proveedores
         </div>
-    </div>
-<br>
-<br>
-<div class="card mb-4">
-    <div class="card-header">
-        <i class="fas fa-table me-1"></i>
-        Proveedores
-    </div>
-    <div class="card-body">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">Proveedor</th>
-                    <th scope="col">Telefono</th>
-                    <th scope="col">Correo</th>
-                    <th scope="col">Accion</th>
-                </tr>
-            </thead>
-
-        </table>
-    </div>
-
-    @foreach (var proveedor in Model)
-    {
-        <div id="row-@proveedor.Id_Proveedor" class="row mb-1 p-1">
-            <div class="col-2">@proveedor.Nombre_Proveedor</div>
-            <div class="col-2">@proveedor.Telefono</div>
-            <div class="col-4">@proveedor.Correo</div>
-
-
-
-            <div class="col-2">
-                <a asp-controller="Proveedores" asp-action="ActualizarProveedor" asp-route-id="@proveedor.Id_Proveedor" type="button" id="edit" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i>Editar</a>
-                <button type="button" id="delete" class="btn btn-outline-danger" onclick="Delete(@proveedor.Id_Proveedor)"><i class="fa-solid fa-trash-can"></i>Eliminar</button>
-
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="align-middle">Proveedor</th> 
+                            <th scope="col" class="align-middle">Teléfono</th>
+                            <th scope="col" class="align-middle">Correo</th>
+                            <th scope="col" class="align-middle">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var proveedor in Model)
+                        {
+                            <tr>
+                                <td class="align-middle">@proveedor.Nombre_Proveedor</td>
+                                <td class="align-middle">@proveedor.Telefono</td>
+                                <td class="align-middle">@proveedor.Correo</td>
+                                <td class="align-middle">
+                                    <a asp-controller="Proveedores" asp-action="ActualizarProveedor" asp-route-id="@proveedor.Id_Proveedor" type="button" id="edit" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i>Editar</a>
+                                    <button type="button" id="delete" class="btn btn-outline-danger" onclick="Delete(@proveedor.Id_Proveedor)"><i class="fa-solid fa-trash-can"></i>Eliminar</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
-    }
+    </div>
 </div>
+
 
 
 <script type="text/javascript">

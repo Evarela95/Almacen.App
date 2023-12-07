@@ -7,8 +7,8 @@
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Categorias</h1>
-    <div class="4">
+    <h1 class="mt-4">Categorías</h1>
+    <div class="col-4">
         <a asp-controller="Categorias" asp-action="AgregarCategoria" class="btn btn-outline-success">
             <i class="fa-solid fa-person-circle-plus"></i>Agregar
         </a>
@@ -17,33 +17,33 @@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            Categorias
+            Categorías
         </div>
         <div class="card-body">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">Categoria</th>
-                        <th scope="col">Accion</th>
-                    </tr>
-                </thead>
-
-            </table>
-        </div>
-        @foreach (var categoria in Model)
-        {
-            <div id="row-@categoria.Id_Categoria" class="row mb-1 p-1">
-                <div class="col-3">@categoria.Nombre_Categoria</div>
-
-                <div class="col-6">
-                    <a asp-controller="Categorias" asp-action="ActualizarCategoria" asp-route-id="@categoria.Id_Categoria" type="button" id="edit" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i>Edit</a>
-                    <button type="button" id="delete" class="btn btn-outline-danger" onclick="Delete(@categoria.Id_Categoria)"><i class="fa-solid fa-trash-can"></i>Eliminar</button>
-                </div>
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="align-middle">Categoría</th> 
+                            <th scope="col" class="align-middle">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var categoria in Model)
+                        {
+                            <tr>
+                                <td class="align-middle">@categoria.Nombre_Categoria</td>
+                                <td class="align-middle">
+                                    <a asp-controller="Categorias" asp-action="ActualizarCategoria" asp-route-id="@categoria.Id_Categoria" type="button" id="edit" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i>Editar</a>
+                                    <button type="button" id="delete" class="btn btn-outline-danger" onclick="Delete(@categoria.Id_Categoria)"><i class="fa-solid fa-trash-can"></i>Eliminar</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
-
-        }
+        </div>
     </div>
-
 </div>
 
 <script src="/js/datatables-simple-demo.js"></script>

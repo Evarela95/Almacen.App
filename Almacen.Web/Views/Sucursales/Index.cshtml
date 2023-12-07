@@ -17,40 +17,43 @@
 <div class="card mb-4">
     <div class="card-header">
         <i class="fas fa-table me-1"></i>
-        Productos
+        Sucursales
     </div>
     <div class="card-body">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">Sucursal</th>
-                    <th scope="col">Teléfono</th>
-                    <th scope="col">Correo</th>
-                    <th scope="col">Dirección</th>
-                </tr>
-            </thead>
-
-        </table>
-    </div>
-
-    @foreach (var sucursal in Model)
-    {
-        <div id="row-@sucursal.Id_Sucursal" class="row mb-1 p-1">
-            <div class="col-2">@sucursal.Nombre_Sucursal</div>
-            <div class="col-2">@sucursal.Telefono</div>
-            <div class="col-4">@sucursal.Correo</div>
-            <div class="col-2">@sucursal.Direccion</div>
-            
-            
-            <div class="col-2">
-                <a asp-controller="Sucursales" asp-action="ActualizarSucursal" asp-route-id="@sucursal.Id_Sucursal" type="button" id="edit" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i>Editar</a>
-                <button type="button" id="delete" class="btn btn-outline-danger" onclick="Delete(@sucursal.Id_Sucursal)"><i class="fa-solid fa-trash-can"></i>Eliminar</button>
-
-            @*     <a asp-controller="ProductoSucursal" asp-action="Index" asp-route-id="@sucursal.Id_Sucursal" type="button" id="lista" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i>Productos disponibles</a>
-            *@ </div>
+        <div class="table-responsive">
+            <table class="table table-bordered text-center">
+                <!-- Agregamos la clase 'text-center' para centrar el contenido -->
+                <thead>
+                    <tr>
+                        <th scope="col" class="align-middle">Sucursal</th> <!-- Agregamos la clase 'align-middle' para centrar verticalmente -->
+                        <th scope="col" class="align-middle">Teléfono</th>
+                        <th scope="col" class="align-middle">Correo</th>
+                        <th scope="col" class="align-middle">Dirección</th>
+                        <th scope="col" class="align-middle">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var sucursal in Model)
+                    {
+                        <tr>
+                            <td class="align-middle">@sucursal.Nombre_Sucursal</td>
+                            <td class="align-middle">@sucursal.Telefono</td>
+                            <td class="align-middle">@sucursal.Correo</td>
+                            <td class="align-middle">@sucursal.Direccion</td>
+                            <td class="align-middle">
+                                <a asp-controller="Sucursales" asp-action="ActualizarSucursal" asp-route-id="@sucursal.Id_Sucursal" type="button" id="edit" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i>Editar</a>
+                                <button type="button" id="delete" class="btn btn-outline-danger" onclick="Delete(@sucursal.Id_Sucursal)"><i class="fa-solid fa-trash-can"></i>Eliminar</button>
+                                <!-- <a asp-controller="ProductoSucursal" asp-action="Index" asp-route-id="@sucursal.Id_Sucursal" type="button" id="lista" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i>Productos disponibles</a> -->
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
-    }
+    </div>
 </div>
+
+
 
 <script type="text/javascript">
     function Delete(id_sucursal) {
