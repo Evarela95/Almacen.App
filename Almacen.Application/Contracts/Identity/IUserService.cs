@@ -1,4 +1,4 @@
-﻿using Almacen.Aplication.Components;
+﻿using Almacen.Application.Components;
 using Microsoft.AspNetCore.Authentication;
 using System;
 using System.Collections.Generic;
@@ -11,12 +11,19 @@ namespace Almacen.Application.Contracts.Identity
     public interface IUserService
     {
         Task<Result> Register(string email, string password);
-        Task<Result> Signin(string email, string password);
-        Task<Result> Logout();
-        Task<IEnumerable<AuthenticationScheme>> GetExternalSignins();
-        AuthenticationProperties ConfigureExternalSignin(string provider, string redirectUrl);
-        Task<Result> ExternalSignin();
-        Result HasAccess(string email, string controller, string action);
 
+        Task<Result> Signin(string email, string password);
+
+        Task<Result> Logout();
+
+        Task<IEnumerable<AuthenticationScheme>> GetExternalSignins();
+
+        AuthenticationProperties ConfigureExternalSignin(string provider, string redirectUrl);
+
+        Task<Result> ExternalSignin();
+
+        Result HasAccess(string email, string controller, string action);
+        Task<Result> ForgotPassword(string email);
     }
 }
+

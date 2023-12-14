@@ -61,7 +61,8 @@
         }).done(function (response) {
             if (response.success) {
                 $("#row-" + Id_Proveedor).remove();
-                toastr.success("Proveedor eliminado")
+                toastr.success("Proveedor eliminado");
+                location.reload();
             }
             else {
                 toastr.error(response.errorMessage);

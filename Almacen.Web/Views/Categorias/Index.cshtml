@@ -58,7 +58,8 @@
         }).done(function (response) {
             if (response.success) {
                 $("#row-" + id_categoria).remove();
-                toastr.success("Categoría eliminada")
+                toastr.success("Categoría eliminada");
+                location.reload();
             }
             else {
                 toastr.error(response.errorMessage);

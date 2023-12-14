@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Almacen.Persistence.Contexts
+namespace Almacen.Infrastructure.Contexts
 {
     public class ApplicationIdentityDbContext : IdentityDbContext, IApplicationIdentityDbContext
     {

@@ -1,15 +1,10 @@
 ﻿using Almacen.Domain.Atributtes;
 using Microsoft.AspNetCore.Authentication;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Almacen.Domain.InputModels.Users
 {
-    public class LoginInputModel
+    public class SignupInputModel
     {
         [Required]
         [EmailAddress]
@@ -19,10 +14,10 @@ namespace Almacen.Domain.InputModels.Users
         [Required]
         [MaxLength(20)]
         public string Password { get; set; }
-        [NotRequired]
-        public string ReturnUrl { get; set; }
-        [NotRequired]
-        public IEnumerable<AuthenticationScheme> ExternalLogins { get; set; }
+
+        [Required]
+        [MaxLength(20)]
+        [Compare("Password")]
+        public string ConfirmPassword { get; set; }
     }
 }
-

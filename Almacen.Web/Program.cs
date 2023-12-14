@@ -1,7 +1,12 @@
 using Almacen.Application;
+using Almacen.Infrastructure.Authorization;
+using Almacen.Infrastructure.Services;
 using Almacen.Infrastruture;
 using Almacen.Persistence;
 using Almacen.Web;
+using DNTCaptcha.Core;
+using Microsoft.AspNetCore.Authorization;
+using Optivem.Framework.Core.Domain;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,13 +14,40 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services
     .AddApplication(builder.Configuration)
-    .AddPersistence(builder.Configuration)
     .AddInfrastructure(builder.Configuration)
-    .AddPresentation(builder.Configuration);
+    .AddPersistence(builder.Configuration)
+    .AddPresentation(builder.Configuration)
+    .AddSingleton<EmailService>()
+    .AddAuthorization(options =>
+    {
+        options.AddPolicy(PolicyTypes.Guests.Create, policy =>
+        {
+            policy.RequireAuthenticatedUser();
+        });
+        options.AddPolicy(PolicyTypes.Guests.Read, policy =>
+        {
+            PolicyHandler.Equals(policy, PolicyTypes.Guests.Read);
+            policy.RequireAuthenticatedUser();
+        });
+        options.AddPolicy(PolicyTypes.Guests.Edit, policy =>
+        {
+            policy.RequireAuthenticatedUser();
+        });
+        options.AddPolicy(PolicyTypes.Guests.Delete, policy =>
+        {
+            policy.RequireAuthenticatedUser();
+        });
+
+    });
+builder.Services.AddScoped<IAuthorizationHandler, PolicyHandler>();
 
 builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));
 builder.Services.AddControllersWithViews();
+builder.Services.AddDNTCaptcha(options =>
+        options.UseCookieStorageProvider()
+            .ShowThousandsSeparators(false).WithEncryptionKey("Test123456789")
+    );
 //builder.Host.UseSerilog((context, configuration)
 //    => configuration.ReadFrom.Configuration(context.Configuration));
 

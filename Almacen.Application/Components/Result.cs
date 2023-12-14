@@ -1,30 +1,28 @@
 ﻿using Almacen.Application.Diagnostics;
 using Almacen.Domain.InputModels;
 
-namespace Almacen.Aplication.Components
+namespace Almacen.Application.Components
 {
     public class Result
     {
         protected Result(bool success, string error)
         {
-            if(success && Guard.Ensure.IsNotNullOrEmptyOrWhiteSpace(error))
+            if (success && Guard.Ensure.IsNotNullOrEmptyOrWhiteSpace(error))
             {
-                throw new InvalidOperationException("Una operación exitosa no puede contener errores");
+                throw new InvalidOperationException("Success operations should not be befriended by error messages.");
             }
-
 
             if (!success && Guard.Ensure.IsNullOrEmptyOrWhiteSpace(error))
             {
-                throw new InvalidOperationException("Operación sin éxito, contiene errores, revise");
+                throw new InvalidOperationException("Unsucessfull operations should be befriended by error messages.");
             }
 
             Success = success;
             Error = error;
         }
 
-
         public bool Success { get; }
-        
+
         public bool Failure => !Success;
 
         public string Error { get; }
@@ -39,8 +37,6 @@ namespace Almacen.Aplication.Components
             return new Result(false, errorMessage);
         }
 
-
-
         public static Result<T> Ok<T>(T value)
         {
             return new Result<T>(true, string.Empty, value);
@@ -54,9 +50,9 @@ namespace Almacen.Aplication.Components
 
     public class Result<T> : Result
     {
-        protected internal Result (bool succes, string error, T value) : base(succes, error)
+        protected internal Result(bool success, string error, T value)
+            : base(success, error)
         {
-         
             Value = value;
         }
 

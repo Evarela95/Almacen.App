@@ -10,8 +10,10 @@ namespace Almacen.Infrastructure.Extensions
 {
     public static class ClaimExtensions
     {
-        public static string GetClaim(this IIdentity claimsIdentity, string claimType) {
-            return ((ClaimsIdentity)claimsIdentity).Claims.FirstOrDefault(s=>s.Type == claimType)?.Value;
+        public static string GetClaim(this IIdentity claimsIdentity, string claimType)
+        {
+            return ((ClaimsIdentity)claimsIdentity).Claims.FirstOrDefault
+                (s => s.Type == claimType)?.Value;
         }
     }
 }

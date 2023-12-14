@@ -1,6 +1,6 @@
 ﻿
 using Almacen.Domain.EntityModels.Users;
-using Almacen.Aplication.Components;
+using Almacen.Application.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;

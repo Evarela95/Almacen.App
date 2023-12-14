@@ -1,5 +1,6 @@
 ﻿using Almacen.Application.Contracts.Repositories;
 using Almacen.Domain.Entities;
+using Almacen.Domain.EntityModels;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Almacen.Persistence.Repositories
@@ -17,3 +18,4 @@ namespace Almacen.Persistence.Repositories
         }
     }
 }
+

@@ -1,6 +1,7 @@
 ﻿using Almacen.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Almacen.Domain.ViewModels;
 
 namespace Almacen.Web.Controllers
 {
@@ -26,7 +27,7 @@ namespace Almacen.Web.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new Domain.ViewModels.ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

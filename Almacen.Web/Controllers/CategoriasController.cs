@@ -1,6 +1,7 @@
 ﻿using Almacen.Application.Contracts;
 using Almacen.Domain.InputModels.Categoria;
-
+using Almacen.Infrastructure.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Almacen.Web.Controllers
@@ -15,7 +16,7 @@ namespace Almacen.Web.Controllers
         }
 
 
-
+        [Authorize(Policy = PolicyTypes.Guests.Read)]
         public IActionResult Index()
         {
             var categorias = _service.List();
@@ -34,6 +35,7 @@ namespace Almacen.Web.Controllers
 
 
         [HttpPost]
+        [Authorize(Policy = PolicyTypes.Guests.Create)]
         public IActionResult AgregarCategoria(NewCategoria newCategoria)
         {
             if (ModelState.IsValid)
@@ -59,10 +61,12 @@ namespace Almacen.Web.Controllers
         {
             ExistingCategoria existingCategoria = _service.Get(id_categoria);
             return View(existingCategoria);
+
         }
 
         [HttpPost]
         [Route("/categorias/ActualizarCategoria/{id_categoria}")]
+        [Authorize(Policy = PolicyTypes.Guests.Edit)]
         public IActionResult ActualizarCategoria(ExistingCategoria existingCategoria)
         {
             if (ModelState.IsValid)
@@ -88,6 +92,7 @@ namespace Almacen.Web.Controllers
 
         [HttpDelete]
         [Route("/api/v1/categorias/Eliminar/{id_categoria}")]
+        [Authorize(Policy = PolicyTypes.Guests.Delete)]
         public JsonResult Eliminar([FromRoute] int id_categoria)
         {
             if (_service.Delete(id_categoria))

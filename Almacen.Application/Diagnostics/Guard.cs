@@ -56,10 +56,14 @@ namespace Almacen.Application.Diagnostics
             {
                 return !IsNullOrEmptyOrWhiteSpace(value);
             }
-            public static string ReplaceNullOrEmptyOrWhiteSpace(string value, string defaultValue)
+
+            public static string OnNullOrEmptyOrWhiteSpace(string value, string defaultValue)
             {
-                return IsNullOrEmptyOrWhiteSpace(value) ? defaultValue : value;
+                return IsNotNullOrEmptyOrWhiteSpace(value)
+                    ? value
+                    : defaultValue;
             }
+
         }
     }
 }

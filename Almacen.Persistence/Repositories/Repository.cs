@@ -11,7 +11,6 @@ namespace Almacen.Persistence.Repositories
         where TEntity : Entity
     {
         private readonly DbContext _dbContext;
-
         private readonly DbSet<TEntity> _dbset;
 
         public Repository(ApplicationDbContext dbContext)
@@ -25,7 +24,7 @@ namespace Almacen.Persistence.Repositories
         {
             IQueryable<TEntity> query = _dbset;
             query = query.Where(predicate);
-            //El OR default devuelve nulo si no encontrase nada
+
             return query.FirstOrDefault();
         }
 
@@ -34,23 +33,25 @@ namespace Almacen.Persistence.Repositories
             params Expression<Func<TEntity, object>>[] includes)
         {
             IQueryable<TEntity> query = _dbset;
+
             if (predicate != null)
             {
                 query = query.Where(predicate);
             }
+
             if (includes.Any())
             {
-                query = includes.Aggregate(query, (current, include) => current.Include(include));
+                query = includes.Aggregate
+                    (query, (current, include) => current.Include(include));
             }
+
             if (orderBy != null)
             {
-
                 query = orderBy(query);
-
             }
+
             return query;
         }
-
 
         public void Insert(TEntity entity)
         {
@@ -63,11 +64,13 @@ namespace Almacen.Persistence.Repositories
             Guard.Against.ThrowIfNull(entity);
             _dbset.Update(entity);
         }
+
         public void Delete(TEntity entity)
         {
             Guard.Against.ThrowIfNull(entity);
             _dbset.Remove(entity);
         }
+
         public void Save()
         {
             _dbContext.SaveChanges();

@@ -1,9 +1,8 @@
 ﻿@using Almacen.Domain.InputModels.Users
-@model LoginInputModel
+@model SigninInputModel
 
 @{
-    ViewData["Title"] = "Login Page";
-
+    ViewData["Title"] = "Signin Page";
 }
 
 <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
@@ -19,32 +18,65 @@
                                 <fieldset>
                                     <h1 class="text-nowrap text-center d-block py-3 w-100">Login</h1>
                                     <div class="mb-3">
-                                        <label asp-for="Email" class="form-label"> Email Address:</label>
-                                        <input asp-for="Email" type="email" class="form-control" />
+                                        <label asp-for="Email" class="form-label">Email Address:</label>
+                                        <input asp-for="Email" type="email" class="form-control" placeholder="Email Address" />
                                         <span asp-validation-for="Email" class="text-danger"></span>
                                     </div>
+
                                     <div class="mb-4">
-                                        <label asp-for="Password" class="form-label"> Password:</label>
+                                        <label asp-for="Password" class="form-label">Password:</label>
                                         <input asp-for="Password" type="password" class="form-control" />
                                         <span asp-validation-for="Password" class="text-danger"></span>
                                     </div>
+                                    <div class="mb-5">
+                                        
+
+                                        <dnt-captcha asp-captcha-generator-max="999"
+                                                     asp-captcha-generator-min="001"
+                                                     asp-captcha-generator-language="English"
+                                                     asp-captcha-generator-display-mode="SumOfTwoNumbers"
+                                                     asp-use-relative-urls="true"
+                                                     asp-placeholder="Enter Captcha"
+                                                     asp-validation-error-message="Please enter the security code."
+                                                     asp-font-name="Tahoma"
+                                                     asp-font-size="20"
+                                                     asp-fore-color="#050505"
+                                                     asp-back-color="#fff"
+                                                     asp-text-box-class="text-box form-control"
+                                                     asp-text-box-template="<span class='input-group-prepend'><span class='form-group-text'></span></span>{0}"
+                                                     asp-validation-message-class="text-danger"
+                                                     asp-refresh-button-class="fas fa-redo btn-sm"
+                                                     asp-use-noise="false" />
+
+
+
+                                    </div>
                                     <div class="cold-4">
-                                        <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign In</button>
+                                        <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Signin</button>
                                     </div>
                                 </fieldset>
                             </form>
-
-                            <form asp-action="ExternalSignin" method="post" asp-route-returnUrl="@Model.ReturnUrl">
-                                @foreach (var externalLogin in Model.ExternalLogins)
-                                {
-
-                                    <button type="submit" class="btn btn-danger w-100 py-8 fs-4 mb-4 rounded-2" name="provider" value="@externalLogin.Name">
-                                        @externalLogin.DisplayName
-                                    </button>
-
-                                }
-                            </form>
                         </div>
+
+
+                        <form asp-action="ExternalSignin" method="post" asp-route-returnUrl="@Model.ReturnUrl">
+
+                            @foreach (var externalSignin in Model.ExternalSignins)
+                            {
+                                <button type="submit" class="btn btn-danger w-100 py-8 fs-4 mb-4 rounded-2" name="provider"
+                                        value="@externalSignin.Name">
+                                    @externalSignin.DisplayName
+                                </button>
+                            }
+
+                        </form>
+
+
+                        <form method="post">
+
+                            <span STYLE="font-weight:bold"><a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="ForgotPassword">¿Olvidó su contraseña?</a></span>
+
+                        </form>
                     </div>
                 </div>
             </div>

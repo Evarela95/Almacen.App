@@ -15,9 +15,11 @@ namespace Almacen.Infrastructure.Authorization
     {
         private readonly IUserService _userService;
 
-        public PolicyHandler(IUserService userService) {
+        public PolicyHandler(IUserService userService)
+        {
             this._userService = userService;
         }
+
         protected override Task HandleRequirementAsync
             (AuthorizationHandlerContext context, PolicyRequirement requirement)
         {
@@ -25,24 +27,30 @@ namespace Almacen.Infrastructure.Authorization
             {
                 context.Fail();
             }
-            else {
+            else
+            {
                 var hasAccess = false;
                 var email = context.User.Identity.GetClaim(ClaimTypes.Email);
-                foreach(var permission in requirement.Permissions)
+
+                foreach (var permission in requirement.Permissions)
                 {
-                    hasAccess = hasAccess || _userService.HasAccess(email, permission.Controller, permission.Action).Success;
-                    if (hasAccess) {
+                    hasAccess = hasAccess ||
+                        _userService.HasAccess(email,
+                            permission.Controller, permission.Action).Success;
+
+                    if (hasAccess)
+                    {
                         context.Succeed(requirement);
                         break;
                     }
-               
                 }
-                if(!hasAccess)
+
+                if (!hasAccess)
                 {
                     context.Fail();
-
                 }
             }
+
             return Task.CompletedTask;
         }
     }

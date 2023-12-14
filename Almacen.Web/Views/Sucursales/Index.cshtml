@@ -51,25 +51,26 @@
             </table>
         </div>
     </div>
+    <script type="text/javascript">
+        function Delete(id_sucursal) {
+            $.ajax({
+                url: "/api/v1/sucursales/Eliminar/" + id_sucursal,
+                method: "DELETE",
+                dataType: "json",
+                contentType: "application/json"
+            }).done(function (response) {
+                if (response.success) {
+                    $("#row-" + id_sucursal).remove();
+                    toastr.success("Sucursal eliminada")
+                    location.reload();
+                }
+                else {
+                    toastr.error(response.errorMessage);
+                }
+            });
+        }
+    </script>
 </div>
 
 
 
-<script type="text/javascript">
-    function Delete(id_sucursal) {
-        $.ajax({
-            url: "/api/v1/sucursales/Eliminar/" + id_sucursal,
-            method: "DELETE",
-            dataType: "json",
-            contentType: "application/json"
-        }).done(function (response) {
-            if (response.success) {
-                $("#row-" + id_sucursal).remove();
-                toastr.success("Sucursal eliminada")
-            }
-            else {
-                toastr.error(response.errorMessage);
-            }
-        });
-    }
-</script> 

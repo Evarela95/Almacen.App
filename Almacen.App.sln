@@ -5,13 +5,20 @@ VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Almacen.Web", "Almacen.Web\Almacen.Web.csproj", "{EBE7B7E6-15FA-4F6E-9640-AD26BD27A048}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Almacen.Application", "Almacen.Application\Almacen.Application.csproj", "{BC9F669D-0724-4FDB-8D35-A543CE018BDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Almacen.Application", "Almacen.Application\Almacen.Application.csproj", "{BC9F669D-0724-4FDB-8D35-A543CE018BDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Almacen.Domain", "Almacen.Domain\Almacen.Domain.csproj", "{5661A385-FAB9-424E-A55E-58521B19D275}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Almacen.Domain", "Almacen.Domain\Almacen.Domain.csproj", "{5661A385-FAB9-424E-A55E-58521B19D275}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Almacen.Persistence", "Almacen.Persistence\Almacen.Persistence.csproj", "{70E6D24D-3A90-4C26-B3DE-279EC37C7790}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Almacen.Persistence", "Almacen.Persistence\Almacen.Persistence.csproj", "{70E6D24D-3A90-4C26-B3DE-279EC37C7790}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Almacen.Infrastruture", "Almacen.Infrastruture\Almacen.Infrastruture.csproj", "{1EE8B9D7-FF16-4641-BD78-AC9C2671B672}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Almacen.Infrastruture", "Almacen.Infrastruture\Almacen.Infrastruture.csproj", "{1EE8B9D7-FF16-4641-BD78-AC9C2671B672}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{03F5972C-E51C-4361-9EF0-B02667FCC7A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Almacen.Tests.Application", "Almacen.Tests.Application\Almacen.Tests.Application.csproj", "{EFA87CA6-9413-4EB9-9009-957F40E37856}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BC9F669D-0724-4FDB-8D35-A543CE018BDD} = {BC9F669D-0724-4FDB-8D35-A543CE018BDD}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +46,16 @@ Global
 		{1EE8B9D7-FF16-4641-BD78-AC9C2671B672}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EE8B9D7-FF16-4641-BD78-AC9C2671B672}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EE8B9D7-FF16-4641-BD78-AC9C2671B672}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFA87CA6-9413-4EB9-9009-957F40E37856}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFA87CA6-9413-4EB9-9009-957F40E37856}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFA87CA6-9413-4EB9-9009-957F40E37856}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFA87CA6-9413-4EB9-9009-957F40E37856}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EFA87CA6-9413-4EB9-9009-957F40E37856} = {03F5972C-E51C-4361-9EF0-B02667FCC7A4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B1F87F9D-2636-4E9B-9719-7920408F828D}

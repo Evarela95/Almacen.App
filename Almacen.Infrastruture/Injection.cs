@@ -1,8 +1,9 @@
 ﻿using Almacen.Application.Contracts.Identity;
+using Almacen.Domain.ConfigurationModels;
 using Almacen.Domain.EntityModels.Authorization;
 using Almacen.Infrastructure.Authorization;
 using Almacen.Infrastructure.Services;
-using Almacen.Persistence.Contexts;
+using Almacen.Infrastructure.Contexts;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,38 +21,50 @@ namespace Almacen.Infrastruture
         public static IServiceCollection AddInfrastructure
             (this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<ApplicationIdentityDbContext>(options => { options.UseSqlServer(configuration.GetConnectionString("Default")); });
+            services.AddDbContext<ApplicationIdentityDbContext>(options =>
+            {
+                options.UseSqlServer(configuration.GetConnectionString("Default"));
+            });
+
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {
                 options.Password.RequiredLength = 8;
                 options.Password.RequiredUniqueChars = 3;
-            }).AddEntityFrameworkStores<ApplicationIdentityDbContext>();
+            }).AddDefaultTokenProviders().AddEntityFrameworkStores<ApplicationIdentityDbContext>();
 
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = IdentityConstants.ApplicationScheme;
                 options.DefaultChallengeScheme = IdentityConstants.ApplicationScheme;
                 options.DefaultSignInScheme = IdentityConstants.ApplicationScheme;
-            }).AddGoogle(options => {
-                options.ClientId = configuration["authentication:google:clientId"];
-                options.ClientSecret = configuration["authentication:google:clientSecret"];
+            }).AddGoogle(options =>
+            {
+                var settings =
+                        configuration.GetSection("authentication:google").Get<GoogleAuthentication>();
+
+                options.ClientId = settings.ClientId;
+                options.ClientSecret = settings.ClientSecret;
                 options.SignInScheme = IdentityConstants.ExternalScheme;
             });
+
             services.AddAuthorization(options =>
             {
                 options.AddPolicy(PolicyTypes.Guests.Read,
                     policy =>
                     {
-                        // Lista de permisos asociado con controlador y una lista depermisos
-                        policy.AddRequirements(new PolicyRequirement
-                            (new List<PolicyPermission>()
-                            {
-                                new PolicyPermission("Home", "Guests")
-                            }
-                            ));
+                        policy.AddRequirements
+                            (new PolicyRequirement
+                                (
+                                    new List<PolicyPermission>()
+                                    {
+                                        new PolicyPermission("Home", "Guests")
+                                    }
+                                ));
                     });
             });
+
             services.AddScoped<IUserService, UserService>();
+
             return services;
         }
     }

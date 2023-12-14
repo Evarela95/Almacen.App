@@ -91,6 +91,7 @@ namespace Almacen.Web.Controllers
             if (_service.Delete(Id_Marca))
             {
                 return Json(new { success = true });
+
             }
 
             return Json(new { success = false, errorMessage = "Error al eliminar" });

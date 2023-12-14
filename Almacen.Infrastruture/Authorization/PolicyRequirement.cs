@@ -16,9 +16,11 @@ namespace Almacen.Infrastructure.Authorization
         {
             this._permissions = permissions;
         }
+
         public IReadOnlyList<PolicyPermission> Permissions
         {
-            get { 
+            get
+            {
                 return _permissions.ToList();
             }
         }

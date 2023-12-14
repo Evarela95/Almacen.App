@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Almacen.Web.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 </head>
@@ -24,13 +27,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
-
-                        @if (!User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="User" asp-action="Signin">Login</a>
-                            </li>
-                        }
 
                         @if (User.Identity.IsAuthenticated)
                         {
@@ -78,7 +74,7 @@
                                 </ul>
                             </li>
 
-                            <li class="nav-item dropdown">
+                           /* <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown5" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Productos
                                 </a>
@@ -87,9 +83,27 @@
                                     <li><a class="dropdown-item" asp-area="" asp-controller="Productos" asp-action="AgregarProducto">Agregar producto</a></li>
 
                                 </ul>
+                            </li>*/
+                            <li class="nav-item custom-align-right">
+                                <span class="nav-link text-light">Welcome, @User.Identity.Name!</span>
                             </li>
-
+                            <li class="nav-item">
+                                <a id="logoutLink" class="nav-link text-light" href="#">Logout</a>
+                                <form id="logoutForm" asp-controller="User" asp-action="Logout" method="post" style="display: none;">
+                                    @Html.AntiForgeryToken()
+                                </form>
+                            </li>
                         }
+                        @if (!User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="User" asp-action="Signin">Sign in</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="User" asp-action="Signup">Sign up</a>
+                                </li>
+                            }
+                                                        
 
                     </ul>
                 </div>
@@ -113,3 +127,9 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+<script>
+    document.getElementById('logoutLink').addEventListener('click', function (e) {
+        e.preventDefault();
+        document.getElementById('logoutForm').submit();
+    });
+</script>
